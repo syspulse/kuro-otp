@@ -1,7 +1,8 @@
 package ejisan.kuro.otp
 
 import java.net.URI
-import scala.collection.JavaConverters._
+//import scala.collection.JavaConverters._
+import scala.jdk.CollectionConverters._
 import scala.compat.java8.OptionConverters._
 
 /**
@@ -74,7 +75,7 @@ class TOTP(
         otpkey,
         instantTimestamp,
         window)
-      .mapValues(intToDigits(_, digits))
+      .view.mapValues(intToDigits(_, digits)).toMap
   }
 
   /**
@@ -293,7 +294,7 @@ object TOTP {
       digits: Int,
       period: Int,
       otpkey: OTPKey): TOTP =
-    apply(algorithm, digits, period, 0l, otpkey)
+    apply(algorithm, digits, period, 0L, otpkey)
 
   /**
    * Java API: Creates new [[TOTP]] instance.
@@ -314,7 +315,7 @@ object TOTP {
       digits: Int,
       period: Int,
       otpkey: OTPKey): TOTP =
-    apply(algorithm, digits, period, 0l, otpkey)
+    apply(algorithm, digits, period, 0L, otpkey)
 
   /**
    * Creates new [[TOTP]] instance from `otpauth` URI.

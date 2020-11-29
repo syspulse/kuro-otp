@@ -2,11 +2,9 @@ name := """kuro-otp"""
 
 organization := "com.ejisan"
 
-version := "0.0.2-SNAPSHOT"
+version := "0.0.3-SNAPSHOT"
 
-scalaVersion := "2.12.12"
-
-//crossScalaVersions := Seq("2.11.11", scalaVersion.value)
+scalaVersion := "2.13.4"
 
 scalacOptions ++= {
   Seq(
@@ -15,12 +13,7 @@ scalacOptions ++= {
     "-Xlint",
     "-Xfatal-warnings",
     "-Ywarn-dead-code",
-    "-Ywarn-inaccessible",
-    "-Ywarn-infer-any",
-    "-Ywarn-nullary-override",
-    "-Ywarn-nullary-unit",
     "-Ywarn-numeric-widen",
-    "-Ywarn-unused-import",
     "-Ywarn-value-discard",
     "-deprecation",
     "-unchecked",
@@ -51,9 +44,9 @@ testOptions in Test ++= Seq(
   Tests.Argument(TestFrameworks.JUnit, "-q", "-v"))
 
 libraryDependencies ++= Seq(
-  "org.scala-lang.modules" %% "scala-java8-compat" % "0.8.0",
+  "org.scala-lang.modules" %% "scala-java8-compat" % "0.9.1",
   "com.typesafe" % "config" % "1.4.1",
   "commons-codec" % "commons-codec" % "1.10",
   "junit" % "junit" % "4.12" % Test,
   "com.novocode" % "junit-interface" % "0.11" % Test,
-  "org.scalatest" %% "scalatest" % "3.0.1" % Test)
+  "org.scalatest" %% "scalatest" % "3.0.9" % Test)

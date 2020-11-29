@@ -33,77 +33,77 @@ class TOTPSpec extends FlatSpec with Matchers {
 
   // https://tools.ietf.org/html/rfc6238#appendix-B
   "TOTP.generate" should "generate a TOTP code (Appendix B.  Test Vectors)" in {
-    totpSHA1.generate(59l) should not be ("00000000")
-    totpSHA1.generate(59l) should not be ("111111")
+    totpSHA1.generate(59L) should not be ("00000000")
+    totpSHA1.generate(59L) should not be ("111111")
 
-    totpSHA1.generate(59l) should be ("94287082")
-    totpSHA256.generate(59l) should be ("46119246")
-    totpSHA512.generate(59l) should be ("90693936")
+    totpSHA1.generate(59L) should be ("94287082")
+    totpSHA256.generate(59L) should be ("46119246")
+    totpSHA512.generate(59L) should be ("90693936")
 
-    totpSHA1.generate(1111111109l) should be ("07081804")
-    totpSHA256.generate(1111111109l) should be ("68084774")
-    totpSHA512.generate(1111111109l) should be ("25091201")
+    totpSHA1.generate(1111111109L) should be ("07081804")
+    totpSHA256.generate(1111111109L) should be ("68084774")
+    totpSHA512.generate(1111111109L) should be ("25091201")
 
-    totpSHA1.generate(1111111111l) should be ("14050471")
-    totpSHA256.generate(1111111111l) should be ("67062674")
-    totpSHA512.generate(1111111111l) should be ("99943326")
+    totpSHA1.generate(1111111111L) should be ("14050471")
+    totpSHA256.generate(1111111111L) should be ("67062674")
+    totpSHA512.generate(1111111111L) should be ("99943326")
 
-    totpSHA1.generate(1234567890l) should be ("89005924")
-    totpSHA256.generate(1234567890l) should be ("91819424")
-    totpSHA512.generate(1234567890l) should be ("93441116")
+    totpSHA1.generate(1234567890L) should be ("89005924")
+    totpSHA256.generate(1234567890L) should be ("91819424")
+    totpSHA512.generate(1234567890L) should be ("93441116")
 
-    totpSHA1.generate(2000000000l) should be ("69279037")
-    totpSHA256.generate(2000000000l) should be ("90698825")
-    totpSHA512.generate(2000000000l) should be ("38618901")
+    totpSHA1.generate(2000000000L) should be ("69279037")
+    totpSHA256.generate(2000000000L) should be ("90698825")
+    totpSHA512.generate(2000000000L) should be ("38618901")
 
-    totpSHA1.generate(20000000000l) should be ("65353130")
-    totpSHA256.generate(20000000000l) should be ("77737706")
-    totpSHA512.generate(20000000000l) should be ("47863826")
+    totpSHA1.generate(20000000000L) should be ("65353130")
+    totpSHA256.generate(20000000000L) should be ("77737706")
+    totpSHA512.generate(20000000000L) should be ("47863826")
   }
 
   it should "generate TOTP codes with window" in {
-    totpSHA1.generate(1111112040l, 2) should === (Map(
-      37037067l -> "79453447",
-      37037068l -> "95565820",
-      37037069l -> "19570641",
-      37037070l -> "93804954",
-      37037066l -> "88393293"))
+    totpSHA1.generate(1111112040L, 2) should === (Map(
+      37037067L -> "79453447",
+      37037068L -> "95565820",
+      37037069L -> "19570641",
+      37037070L -> "93804954",
+      37037066L -> "88393293"))
   }
 
   "TOTP.validate" should "validate the TOTP code (Appendix B.  Test Vectors)" in {
-    totpSHA1.validate(59l, "00000000") should be (false)
-    totpSHA1.validate(59l, "111111") should be (false)
+    totpSHA1.validate(59L, "00000000") should be (false)
+    totpSHA1.validate(59L, "111111") should be (false)
 
-    totpSHA1.validate(59l, "94287082") should be (true)
-    totpSHA256.validate(59l, "46119246") should be (true)
-    totpSHA512.validate(59l, "90693936") should be (true)
+    totpSHA1.validate(59L, "94287082") should be (true)
+    totpSHA256.validate(59L, "46119246") should be (true)
+    totpSHA512.validate(59L, "90693936") should be (true)
 
-    totpSHA1.validate(1111111109l, "07081804") should be (true)
-    totpSHA256.validate(1111111109l, "68084774") should be (true)
-    totpSHA512.validate(1111111109l, "25091201") should be (true)
+    totpSHA1.validate(1111111109L, "07081804") should be (true)
+    totpSHA256.validate(1111111109L, "68084774") should be (true)
+    totpSHA512.validate(1111111109L, "25091201") should be (true)
 
-    totpSHA1.validate(1111111111l, "14050471") should be (true)
-    totpSHA256.validate(1111111111l, "67062674") should be (true)
-    totpSHA512.validate(1111111111l, "99943326") should be (true)
+    totpSHA1.validate(1111111111L, "14050471") should be (true)
+    totpSHA256.validate(1111111111L, "67062674") should be (true)
+    totpSHA512.validate(1111111111L, "99943326") should be (true)
 
-    totpSHA1.validate(1234567890l, "89005924") should be (true)
-    totpSHA256.validate(1234567890l, "91819424") should be (true)
-    totpSHA512.validate(1234567890l, "93441116") should be (true)
+    totpSHA1.validate(1234567890L, "89005924") should be (true)
+    totpSHA256.validate(1234567890L, "91819424") should be (true)
+    totpSHA512.validate(1234567890L, "93441116") should be (true)
 
-    totpSHA1.validate(2000000000l, "69279037") should be (true)
-    totpSHA256.validate(2000000000l, "90698825") should be (true)
-    totpSHA512.validate(2000000000l, "38618901") should be (true)
+    totpSHA1.validate(2000000000L, "69279037") should be (true)
+    totpSHA256.validate(2000000000L, "90698825") should be (true)
+    totpSHA512.validate(2000000000L, "38618901") should be (true)
 
-    totpSHA1.validate(20000000000l, "65353130") should be (true)
-    totpSHA256.validate(20000000000l, "77737706") should be (true)
-    totpSHA512.validate(20000000000l, "47863826") should be (true)
+    totpSHA1.validate(20000000000L, "65353130") should be (true)
+    totpSHA256.validate(20000000000L, "77737706") should be (true)
+    totpSHA512.validate(20000000000L, "47863826") should be (true)
   }
 
   it should "validate the TOTP code with window and returns the gap" in {
-    totpSHA1.validate(1111112040l, 1, "79453447") should be (Some(-1))
-    totpSHA1.validate(1111112040l, 1, "95565820") should be (Some(0))
-    totpSHA1.validate(1111112040l, 1, "19570641") should be (Some(1))
-    totpSHA1.validate(1111112040l, 1, "93804954") should be (None)
+    totpSHA1.validate(1111112040L, 1, "79453447") should be (Some(-1))
+    totpSHA1.validate(1111112040L, 1, "95565820") should be (Some(0))
+    totpSHA1.validate(1111112040L, 1, "19570641") should be (Some(1))
+    totpSHA1.validate(1111112040L, 1, "93804954") should be (None)
   }
 
   "TOTP.toURI" should "returns `otpauth` [java.net.URI]." in {

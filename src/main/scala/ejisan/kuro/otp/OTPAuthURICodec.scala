@@ -1,7 +1,8 @@
 package ejisan.kuro.otp
 
 import java.net.URI
-import scala.collection.JavaConverters._
+//import scala.collection.JavaConverters._
+import scala.jdk.CollectionConverters._
 import scala.compat.java8.OptionConverters._
 
 /**
@@ -73,6 +74,7 @@ object OTPAuthURICodec {
       uri.getPath.substring(1).split(":", 2) match {
         case Array(issuer, account) => (account, Some(issuer))
         case Array(account) => (account, None)
+        case _ => ("",None)
       }
     }
     if (scheme == "otpauth" && params.keys.exists(_ == "secret")) {

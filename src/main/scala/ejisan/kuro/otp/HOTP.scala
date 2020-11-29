@@ -1,7 +1,8 @@
 package ejisan.kuro.otp
 
 import java.net.URI
-import scala.collection.JavaConverters._
+//import scala.collection.JavaConverters._
+import scala.jdk.CollectionConverters._
 import scala.compat.java8.OptionConverters._
 
 /**
@@ -42,7 +43,7 @@ class HOTP(
    */
   def generate(counter: Long, lookAheadWindow: Int): Map[Long, String] = {
     generateForCounter(algorithm, digits, otpkey, counter, lookAheadWindow)
-      .mapValues(intToDigits(_, digits))
+      .view.mapValues(intToDigits(_, digits)).toMap
   }
 
   /**
