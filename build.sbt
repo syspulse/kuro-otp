@@ -2,11 +2,11 @@ name := """kuro-otp"""
 
 organization := "com.ejisan"
 
-version := "0.0.1-SNAPSHOTS"
+version := "0.0.2-SNAPSHOT"
 
-scalaVersion := "2.12.2"
+scalaVersion := "2.12.12"
 
-crossScalaVersions := Seq("2.11.11", scalaVersion.value)
+//crossScalaVersions := Seq("2.11.11", scalaVersion.value)
 
 scalacOptions ++= {
   Seq(
@@ -42,7 +42,7 @@ scalacOptions in Compile in doc ++= Seq(
   "-sourcepath", (baseDirectory in LocalProject("kuro-otp")).value.getAbsolutePath,
   "-doc-title", "Kuro OTP (HOTP, TOTP)",
   "-doc-footer", "Copyright (c) 2017 Ryo Ejima (ejisan), Apache License v2.0.",
-  "-doc-source-url", "https://github.com/ejisan/kuro-otp/tree/master€{FILE_PATH}.scala")
+  "-doc-source-url", "https://github.com/ejisan/kuro-otp€{FILE_PATH}.scala")
 
 javacOptions ++= Seq("-source", "1.8")
 
@@ -51,8 +51,8 @@ testOptions in Test ++= Seq(
   Tests.Argument(TestFrameworks.JUnit, "-q", "-v"))
 
 libraryDependencies ++= Seq(
-  "com.typesafe" % "config" % "1.3.1",
   "org.scala-lang.modules" %% "scala-java8-compat" % "0.8.0",
+  "com.typesafe" % "config" % "1.4.1",
   "commons-codec" % "commons-codec" % "1.10",
   "junit" % "junit" % "4.12" % Test,
   "com.novocode" % "junit-interface" % "0.11" % Test,
